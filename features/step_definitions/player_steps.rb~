@@ -1,0 +1,53 @@
+#start
+Given /^I am not playing yet$/ do
+end
+
+When /^I start a new game$/ do
+  start_game
+end
+
+#start, place
+Then /^I should see "([^"]*)"$/ do |message|
+  output.messages.should include(message)
+end
+
+#place
+Given /^the position "([0-4][0-4][NESW])"$/ do |position|
+  start_game
+  @game.place(position)
+end
+
+#move
+Then /^The robot should move one unit forward$/ do
+  @game.move
+end
+
+#report
+When /^I report the position of the robot$/ do
+  @game.report
+end
+
+#left
+Then /^the robot should left rotate$/ do
+  @game.left
+end
+
+#right
+Then /^the robot should right rotate$/ do
+  @game.right
+end
+
+
+class Output
+  def messages
+    @messages ||= []
+  end
+
+  def puts(message)
+    messages << message
+  end
+end
+
+def output
+  @output ||= Output.new
+end

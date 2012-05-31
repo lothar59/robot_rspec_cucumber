@@ -1,0 +1,35 @@
+ruby 1.9.3p125
+cucumber 1.2.0
+rspec 2.10.0 
+
+HOW TO PLAY :
+
+1) place the robot
+
+Here 00N stands for 0 in x 0 in y and the robot facing North.
+It corresponds to the SOUTH EAST position.
+You can go up to 4. so 44N, is the opposite position.
+You can use the letter 'N' 'S' 'W' 'E' to give him a direction
+
+ex : PLACE 10S
+	corresponding to 1 in x, 0 in y and facing South
+
+2) Then you can use the command :
+MOVE
+LEFT
+RIGHT
+REPORT
+
+defined in the attachment.txt file that you will find enclosed in this email.
+
+Feel free to launch the scenarios with cucumber and launch the tests with rspec
+You may want to use the following command for rspec : 
+	rspec --color --format doc
+
+I could have done all the tests with Test::Unit and if you like I can write them if you want.
+
+Thank you for taking the time to read this :).
+
+To launch it : bin/robotsimulator
+
+Enjoy my simulator :)

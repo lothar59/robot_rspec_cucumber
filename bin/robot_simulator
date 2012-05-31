@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'robotsimulator'
+
+game = RobotSimulator::Game.new(STDOUT)
+game.start
+robot = RobotSimulator::Robot.new(STDOUT)
+while entry = gets.chomp
+  robot.command(entry)
+end

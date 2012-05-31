@@ -1,0 +1,76 @@
+require 'spec_helper'
+
+module RobotSimulator   
+  describe Game do
+    let(:output) { double('output').as_null_object }
+    let(:game) { Game.new(output) }
+
+    describe "#start" do
+      it "sends a welcome message" do
+        output.should_receive(:puts).with('Welcome to Robot Simulator!')
+        game.start
+      end
+
+      it "prompts for the place of the robot" do
+        output.should_receive(:puts).with('Place Robot :')
+        game.start
+      end
+    end
+  end
+
+  describe Robot do
+    let(:output) { double('output').as_null_object }
+    let(:robot) { Robot.new(output) }
+
+    describe "#place" do
+      it "sends a message of the place of the robot" do
+        output.should_receive(:puts).with('PLACE 0,0,NORTH')
+        robot.place('00N')
+      end
+
+     it "should set the position of the robot" do
+        robot.place('11E')
+        robot.x.should == 1 && robot.y.should == 1  && robot.direction.should == 'E'
+     end
+    end
+
+    describe "#command" do
+      it "redirects the command to the right command" do
+        robot.command('PLACE 00N')
+	# TODO :  Stub test
+      end
+    end
+
+    describe "#move" do
+      it "moves the robot one unit forward in the facing direction" do
+        robot.place('00N')
+        robot.move
+        robot.x.should == 0 && robot.y.should == 1 && robot.direction.should == 'N'
+      end
+    end
+
+    describe "#report" do
+      it "should report the position of the robot" do
+        robot.place('33N')
+        output.should_receive(:puts).with('Output: 3, 3, NORTH')
+	robot.report
+      end
+    end
+
+    describe "#left" do
+      it "should rotate the robot to the left" do
+        robot.place('44S')
+        robot.left
+	robot.direction.should == 'E'
+      end
+    end
+
+    describe "#right" do
+      it "should rotate the robot to the right" do
+        robot.place('42E')
+	robot.right
+	robot.direction.should == 'S'
+      end
+    end
+  end
+end
